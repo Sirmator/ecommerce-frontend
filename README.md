@@ -1,6 +1,6 @@
-# 🛍️ E-Commerce Frontend (React + Vite)
+# E-Commerce Frontend (React + Vite)
 
-A modern e-commerce storefront built with **React**, **React Router v6**, and **Vite**.
+An E-commerce storefront built with **React**, **React Router v6**, and **Vite**.
 
 ---
 
@@ -14,8 +14,6 @@ A modern e-commerce storefront built with **React**, **React Router v6**, and **
 | `/cart`          | Shopping cart                        |
 | `/checkout`      | Checkout form                        |
 | `/orders`        | Order history with status management |
-| `/admin`         | Admin panel — manage products & categories |
-
 ---
 
 ## Tech Stack
@@ -23,7 +21,7 @@ A modern e-commerce storefront built with **React**, **React Router v6**, and **
 - **React 18** — UI library
 - **React Router v6** — Client-side routing
 - **Vite 5** — Dev server and build tool
-- **Vanilla CSS** — Custom design system (no UI framework)
+- **Tailwind CSS** — Modern design system
 
 ---
 
@@ -65,4 +63,4 @@ npm run build
 
 | Variable        | Description                            | Default                |
 |-----------------|----------------------------------------|------------------------|
-| `VITE_API_URL`  | Base URL of the backend API (browser-accessible) | `http://localhost:3000` |
+| `MY_APP_API_URL`  | Base URL of the backend API (browser-accessible) | `http://localhost:3000` |

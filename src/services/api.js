@@ -1,9 +1,22 @@
 const BASE_URL = import.meta.env.VITE_API_URL || '';
 
+function generateUUID() {
+  // Utilise l'API Web Crypto pour générer un UUID v4 sécurisé (si disponible)
+  if (crypto?.randomUUID) {
+    return crypto.randomUUID();
+  }
+  // Sinon, génère un UUID v4-like en utilisant Math.random (moins sécurisé, mais compatible avec HTTP)
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    const r = (Math.random() * 16) | 0;
+    const v = c === 'x' ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+}
+
 function getSessionId() {
   let id = localStorage.getItem('sessionId');
   if (!id) {
-    id = crypto.randomUUID();
+    id = generateUUID();
     localStorage.setItem('sessionId', id);
   }
   return id;
@@ -16,6 +29,7 @@ function getToken() {
 async function request(path, options = {}) {
   const url = `${BASE_URL}/api${path}`;
   const token = getToken();
+  console.log(url)
   const res = await fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -30,7 +44,11 @@ async function request(path, options = {}) {
 
   const data = await res.json();
   if (!res.ok) {
-    throw new Error(data.message || 'API Error');
+        throw {
+            message: data.message,
+            statusText: res.statusText,
+            status: res.status
+        }  
   }
   return data;
 }
